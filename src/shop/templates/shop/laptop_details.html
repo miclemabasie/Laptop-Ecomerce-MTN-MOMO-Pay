@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ laptop.brand }} {{ laptop.model_name }}</h1>
+<p>{{ laptop.description }}</p>
+<p>Price: {{ laptop.price }} EUR</p>
+<form method="post" action="{% url 'checkout' %}">
+    {% csrf_token %}
+    <label for="phone-number">Phone number:</label><br>
+    <input type="text" id="phone-number" name="phone_number"><br>
+    <label for="amount">Amount:</label><br>
+    <input type="text" id="amount" name="amount" value="{{ laptop.price }}"><br>
+    <button type="submit">Pay</button>
+</form>
+{% endblock %}
